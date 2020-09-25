@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:baheth_app/utils/networking.dart';
-import 'package:simple_html_css/simple_html_css.dart';
+import 'package:baheth_app/utils/def_utils.dart';
 import './results_screen.dart';
 
 class MainScreen extends StatelessWidget {
@@ -23,21 +22,11 @@ class MainScreen extends StatelessWidget {
                 ),
                 FlatButton(
                   onPressed: () async {
-                    List response = await getDef('');
-                    var htmlResponse = response[0]['content'];
-                    var result = HTML.toTextSpan(
-                      context,
-                      htmlResponse + '<br>',
-                      overrideStyle: {
-                        'span': TextStyle(backgroundColor: Colors.yellow),
-                      },
-                      defaultTextStyle: TextStyle(
-                          fontSize: 15, inherit: false, color: Colors.black),
-                    );
+                    List response = await getDefintion('');
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => ResultsScreen(result: result),
+                        builder: (context) => ResultsScreen(result: response),
                       ),
                     );
                   },

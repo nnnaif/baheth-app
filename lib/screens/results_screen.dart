@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:baheth_app/utils/def_utils.dart';
+import '../utils/def_utils.dart';
 
 const List<String> dictionaries = [
   'لسان العرب',

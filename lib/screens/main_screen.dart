@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:baheth_app/utils/def_utils.dart';
+import '../utils/def_utils.dart';
 import 'results_screen.dart';
 import 'quick_result_screen.dart';
 

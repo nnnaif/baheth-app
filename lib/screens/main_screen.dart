@@ -47,7 +47,7 @@ class MainScreen extends StatelessWidget {
 enum SearchType { detailed, quick }
 
 // Depending on the searchType parameter, the button will route to either a
-// best result screen or a detailed results screen
+// quick result screen or a detailed results screen
 class SearchButton extends StatelessWidget {
   final SearchType searchType;
 
@@ -58,12 +58,12 @@ class SearchButton extends StatelessWidget {
     return MaterialButton(
       color: Color(0xff444444),
       onPressed: () async {
-        List response = await getDefintion('');
+        List response = await getDefintion('جعله');
         Navigator.push(
           context,
           MaterialPageRoute(
             builder: (context) => searchType == SearchType.quick
-                ? QuickResultScreen(result: response)
+                ? SingleResultScreen(result: response)
                 : ResultsScreen(result: response),
           ),
         );

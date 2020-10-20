@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import '../utils/def_utils.dart';
 
-class QuickResultScreen extends StatelessWidget {
+class SingleResultScreen extends StatelessWidget {
   final List result;
-  QuickResultScreen({@required this.result});
+  SingleResultScreen({@required this.result});
 
   @override
   Widget build(BuildContext context) {

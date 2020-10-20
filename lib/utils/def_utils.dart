@@ -16,7 +16,6 @@ Future<dynamic> getDefintion(String word) async {
   // http.Response res =
   //     await http.get('http://137.74.130.161/rest/baheth/api/$word');
   // final decoded = json.decode(res.body.substring(5, res.body.length - 1));
-
   return decoded['results'];
 }
 

@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import '../utils/def_utils.dart';
 import 'results_screen.dart';
-import 'quick_result_screen.dart';
+import 'single_result_screen.dart';
 
-class MainScreen extends StatelessWidget {
+class MainScreen extends StatefulWidget {
+  @override
+  _MainScreenState createState() => _MainScreenState();
+}
+
+class _MainScreenState extends State<MainScreen> {
+  String searchTerm;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -19,19 +25,21 @@ class MainScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 TextField(
-                  onChanged: (input) {},
+                  onChanged: (input) {
+                    searchTerm = input;
+                  },
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SearchButton(
-                      searchType: SearchType.detailed,
-                    ),
+                        searchType: SearchType.quick, searchTerm: searchTerm),
                     SizedBox(
                       width: 10.0,
                     ),
                     SearchButton(
-                      searchType: SearchType.quick,
+                      searchType: SearchType.detailed,
+                      searchTerm: searchTerm,
                     ),
                   ],
                 )
@@ -50,21 +58,25 @@ enum SearchType { detailed, quick }
 // quick result screen or a detailed results screen
 class SearchButton extends StatelessWidget {
   final SearchType searchType;
+  final String searchTerm;
 
-  SearchButton({@required this.searchType});
+  SearchButton({@required this.searchType, @required this.searchTerm});
 
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
       color: Color(0xff444444),
       onPressed: () async {
-        List response = await getDefintion('جعله');
+        List response = await getDefintion(searchTerm);
         Navigator.push(
           context,
           MaterialPageRoute(
             builder: (context) => searchType == SearchType.quick
-                ? SingleResultScreen(result: response)
-                : ResultsScreen(result: response),
+                ? SingleResultScreen(result: response[0])
+                : ResultsScreen(
+                    results: response,
+                    searchTerm: searchTerm,
+                  ),
           ),
         );
       },

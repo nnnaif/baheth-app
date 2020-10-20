@@ -13,9 +13,9 @@ Future<dynamic> getDefintion(String word) async {
   var contents = await rootBundle.loadString('assets/data.json');
   final decoded = json.decode(contents.substring(5, contents.length - 1));
 
-  // http.Response res =
-  //     await http.get('http://137.74.130.161/rest/baheth/api/$word');
-  // final decoded = json.decode(res.body.substring(5, res.body.length - 1));
+  /* http.Response res =
+      await http.get('http://137.74.130.161/rest/baheth/api/$word');
+  final decoded = json.decode(res.body.substring(5, res.body.length - 1)); */
   return decoded['results'];
 }
 

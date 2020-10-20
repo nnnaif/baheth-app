@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../utils/def_utils.dart';
 
 class SingleResultScreen extends StatelessWidget {
-  final List result;
+  final Map result;
   SingleResultScreen({@required this.result});
 
   @override
@@ -12,14 +12,14 @@ class SingleResultScreen extends StatelessWidget {
         textDirection: TextDirection.rtl,
         child: Scaffold(
           appBar: AppBar(
-            title: Text('${result[0]['root']} (${result[0]['source']})'),
+            title: Text('${result['root']} (${result['source']})'),
           ),
           body: Container(
             padding: EdgeInsets.all(5.0),
             color: Colors.white,
             child: SingleChildScrollView(
               child: RichText(
-                text: highlightDefinition(context, result[0]['content']),
+                text: highlightDefinition(context, result['content']),
               ),
             ),
           ),
